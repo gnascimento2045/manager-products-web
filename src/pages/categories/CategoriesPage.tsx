@@ -1,5 +1,5 @@
-import { DeleteOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Modal, Popconfirm, Table, message } from 'antd';
+import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
+import { Button, Empty, Form, Input, Modal, Popconfirm, Table, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { type Category, categoriesService } from '../../services/categories.service';
@@ -9,6 +9,7 @@ export default function CategoriesPage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [editing, setEditing] = useState<Category | null>(null);
   const [form] = Form.useForm();
 
   const load = async () => {
@@ -20,9 +21,26 @@ export default function CategoriesPage() {
 
   useEffect(() => { load(); }, []); // eslint-disable-line react-hooks/set-state-in-effect
 
-  const handleCreate = async (values: { name: string; description?: string }) => {
-    await categoriesService.create(values);
-    message.success(formatMessage({ id: 'categories.created' }));
+  const openCreate = () => {
+    setEditing(null);
+    form.resetFields();
+    setModalOpen(true);
+  };
+
+  const openEdit = (category: Category) => {
+    setEditing(category);
+    form.setFieldsValue(category);
+    setModalOpen(true);
+  };
+
+  const handleSubmit = async (values: { name: string; description?: string }) => {
+    if (editing) {
+      await categoriesService.update(editing.id, values);
+      message.success(formatMessage({ id: 'categories.updated' }));
+    } else {
+      await categoriesService.create(values);
+      message.success(formatMessage({ id: 'categories.created' }));
+    }
     setModalOpen(false);
     form.resetFields();
     load();
@@ -41,12 +59,15 @@ export default function CategoriesPage() {
       title: formatMessage({ id: 'categories.table.actions' }),
       key: 'actions',
       render: (_: unknown, record: Category) => (
-        <Popconfirm
-          title={formatMessage({ id: 'categories.delete.confirm' })}
-          onConfirm={() => handleDelete(record.id)}
-        >
-          <Button danger icon={<DeleteOutlined />} size="small" />
-        </Popconfirm>
+        <>
+          <Button icon={<EditOutlined />} size="small" style={{ marginRight: 8 }} onClick={() => openEdit(record)} />
+          <Popconfirm
+            title={formatMessage({ id: 'categories.delete.confirm' })}
+            onConfirm={() => handleDelete(record.id)}
+          >
+            <Button danger icon={<DeleteOutlined />} size="small" />
+          </Popconfirm>
+        </>
       ),
     },
   ];
@@ -55,21 +76,42 @@ export default function CategoriesPage() {
     <>
       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 16 }}>
         <h2 style={{ margin: 0 }}>{formatMessage({ id: 'categories.title' })}</h2>
-        <Button type="primary" icon={<PlusOutlined />} onClick={() => setModalOpen(true)}>
+        <Button type="primary" icon={<PlusOutlined />} onClick={openCreate}>
           {formatMessage({ id: 'categories.new' })}
         </Button>
       </div>
 
-      <Table rowKey="id" dataSource={categories} columns={columns} loading={loading} />
+      <Table
+        rowKey="id"
+        dataSource={categories}
+        columns={columns}
+        loading={loading}
+        locale={{
+          emptyText: (
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={
+                <span>
+                  {formatMessage({ id: 'categories.empty' })}
+                  <br />
+                  <Button type="link" onClick={openCreate}>
+                    {formatMessage({ id: 'categories.new' })}
+                  </Button>
+                </span>
+              },
+            />
+          ),
+        }}
+      />
 
       <Modal
-        title={formatMessage({ id: 'categories.new' })}
+        title={formatMessage({ id: editing ? 'categories.edit' : 'categories.new' })}
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
         onOk={() => form.submit()}
       >
-        <Form form={form} layout="vertical" onFinish={handleCreate}>
-          <Form.Item name="name" label={formatMessage({ id: 'categories.form.name' })} rules={[{ required: true }]}>
+        <Form form={form} layout="vertical" onFinish={handleSubmit}>
+          <Form.Item name="name" label={formatMessage({ id: 'categories.form.name' })} rules={[{ required: true, message: formatMessage({ id: 'categories.form.name.required' }) }]}>
             <Input />
           </Form.Item>
           <Form.Item name="description" label={formatMessage({ id: 'categories.form.description' })}>
