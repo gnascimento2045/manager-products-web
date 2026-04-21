@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';
-import { Button, Empty, Form, Input, Modal, Popconfirm, Table, message } from 'antd';
+import { Button, Form, Input, Modal, Popconfirm, Table, message } from 'antd';
 import { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { type Category, categoriesService } from '../../services/categories.service';
@@ -52,6 +52,15 @@ export default function CategoriesPage() {
     load();
   };
 
+  const renderEmpty = () => (
+    <div style={{ textAlign: 'center', padding: '20px 0' }}>
+      <div>{formatMessage({ id: 'categories.empty' })}</div>
+      <Button type="link" onClick={openCreate}>
+        {formatMessage({ id: 'categories.new' })}
+      </Button>
+    </div>
+  );
+
   const columns = [
     { title: formatMessage({ id: 'categories.table.name' }), dataIndex: 'name', key: 'name' },
     { title: formatMessage({ id: 'categories.table.description' }), dataIndex: 'description', key: 'description' },
@@ -86,22 +95,7 @@ export default function CategoriesPage() {
         dataSource={categories}
         columns={columns}
         loading={loading}
-        locale={{
-          emptyText: (
-            <Empty
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description={
-                <span>
-                  {formatMessage({ id: 'categories.empty' })}
-                  <br />
-                  <Button type="link" onClick={openCreate}>
-                    {formatMessage({ id: 'categories.new' })}
-                  </Button>
-                </span>
-              },
-            />
-          ),
-        }}
+        locale={{ emptyText: renderEmpty() }}
       />
 
       <Modal

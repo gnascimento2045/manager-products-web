@@ -16,7 +16,7 @@ const messages = {
   'categories.table.name': 'Nome',
   'categories.table.description': 'Descrição',
   'categories.table.actions': 'Ações',
-  'categories.empty': 'Nenhuma categoria encontrada',
+  'categories.empty': 'Nenhuma categoria encontrada, adicione uma nova',
 
   'products.title': 'Produtos',
   'products.new': 'Novo Produto',

@@ -11,6 +11,11 @@ export default function App() {
   const { formatMessage } = useIntl();
   const [page, setPage] = useState('products');
 
+  const menuItems = [
+    { key: 'products', icon: <AppstoreOutlined />, label: formatMessage({ id: 'nav.products' }) },
+    { key: 'categories', icon: <TagsOutlined />, label: formatMessage({ id: 'nav.categories' }) },
+  ];
+
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider theme="dark">
@@ -20,11 +25,8 @@ export default function App() {
         <Menu
           theme="dark"
           mode="inline"
-          defaultSelectedKeys={['products']}
-          items={[
-            { key: 'products', icon: <AppstoreOutlined />, label: formatMessage({ id: 'nav.products' }) },
-            { key: 'categories', icon: <TagsOutlined />, label: formatMessage({ id: 'nav.categories' }) },
-          ]}
+          selectedKeys={[page]}
+          items={menuItems}
           onSelect={({ key }) => setPage(key)}
         />
       </Sider>
