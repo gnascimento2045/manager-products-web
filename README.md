@@ -15,6 +15,13 @@ Frontend para gerenciamento de produtos e categorias, construído com React e An
 
 - Node.js instalado
 
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/gnascimento2045/manager-products-web.git
+cd manager-products-web
+```
+
 ## Começando
 
 ### 1. Instalar dependências
@@ -63,7 +70,7 @@ src/
 Escolhi o Ant Design porque tenho experiência em projetos que usam e achei a aparência mais profissional e fácil de customizar. Os componentes prontos aceleram bastante o desenvolvimento.
 
 ### Estado Local
-Não使用了 Redux/Zustand/Jotai por ser um projeto simples. Usei useState e useEffect mesmo, que funcionam bem para esse caso.
+Não utilizei Redux/Zustand/Jotai por ser um projeto simples. Usei useState e useEffect mesmo, que funcionam bem para esse caso.
 
 ### axios
 HTTP client simples e direto. Configurei um interceptor para facilitar futuras implementações de autenticação.
