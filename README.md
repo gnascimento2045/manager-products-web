@@ -1,80 +1,82 @@
 # Manager Products Web
 
-Frontend para gerenciamento de produtos e categorias, construído com React e Ant Design.
+Frontend for product and category management, built with React and Ant Design.
 
-## Tecnologias
+> **Português:** This README is in English. For Portuguese version, see [LEIAME.md](./LEIAME.md)
+
+## Tech Stack
 
 - **Framework:** React 19
 - **Build:** Vite
-- **Linguagem:** TypeScript
+- **Language:** TypeScript
 - **UI:** Ant Design (ANTD)
 - **HTTP:** Axios
 - **i18n:** react-intl
 
-## Pré-requisitos
+## Prerequisites
 
-- Node.js instalado
+- Node.js installed
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/gnascimento2045/manager-products-web.git
 cd manager-products-web
 ```
 
-## Começando
+## Getting Started
 
-### 1. Instalar dependências
+### 1. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 2. Iniciar o servidor de desenvolvimento
+### 2. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Aplicação disponível em: `http://localhost:5173`
+Application available at: `http://localhost:5173`
 
-## Estrutura de Pastas
+## Folder Structure
 
 ```
 src/
 ├── pages/
-│   ├── products/ProductsPage.tsx   # Página de produtos
-│   └── categories/CategoriesPage.tsx # Página de categorias
+│   ├── products/ProductsPage.tsx   # Products page
+│   └── categories/CategoriesPage.tsx # Categories page
 ├── services/
-│   ├── api.ts                       # Configuração Axios
-│   ├── products.service.ts          # API de produtos
-│   └── categories.service.ts        # API de categorias
+│   ├── api.ts                       # Axios configuration
+│   ├── products.service.ts          # Products API
+│   └── categories.service.ts        # Categories API
 ├── locales/
-│   └── pt-BR.ts                     # Traduções português
-├── App.tsx                          # Componente principal
+│   └── pt-BR.ts                     # Portuguese translations
+├── App.tsx                          # Main component
 └── main.tsx                         # Entry point
 ```
 
-## Funcionalidades
+## Features
 
-- CRUD de produtos e categorias
-- Criação rápida de categoria no formulário de produto
-- Formatação de preço em Real brasileiro (R$)
-- Mensagens de erro customizadas em português
-- Empty states com botão para adicionar novo registro
-- Paginação na listagem de produtos
+- CRUD for products and categories
+- Quick category creation in product form
+- Brazilian Real price formatting (R$)
+- Custom error messages in Portuguese
+- Empty states with add button
+- Pagination in product listing
 
-## Decisões Técnicas
+## Technical Decisions
 
 ### ANTD
-Escolhi o Ant Design porque tenho experiência em projetos que usam e achei a aparência mais profissional e fácil de customizar. Os componentes prontos aceleram bastante o desenvolvimento.
+Chose Ant Design because I have experience with projects using it and found it more visually professional and easier to customize. Ready-made components speed up development significantly.
 
-### Estado Local
-Não utilizei Redux/Zustand/Jotai por ser um projeto simples. Usei useState e useEffect mesmo, que funcionam bem para esse caso.
+### Local State
+Did not use Redux/Zustand/Jotai for being a simple project. Used useState and useEffect directly, which work well for this case.
 
 ### axios
-HTTP client simples e direto. Configurei um interceptor para facilitar futuras implementações de autenticação.
+Simple and straightforward HTTP client. Configured an interceptor to make future authentication implementation easier.
 
-## Créditos
+## Credits
 
-Desenvolvido com ajuda de IA (Claude - Anthropic) para estruturação inicial e sugestões de padrões React.
+Developed with assistance from AI (Claude - Anthropic) for initial structure and React pattern suggestions.
