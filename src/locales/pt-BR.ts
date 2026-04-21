@@ -1,18 +1,22 @@
 const messages = {
   'nav.products': 'Produtos',
   'nav.categories': 'Categorias',
-  'app.title': 'Gerenciador',
+  'app.title': 'Gerenciador de Produtos',
 
   'categories.title': 'Categorias',
   'categories.new': 'Nova Categoria',
+  'categories.edit': 'Editar Categoria',
   'categories.deleted': 'Categoria excluída',
   'categories.created': 'Categoria criada',
+  'categories.updated': 'Categoria atualizada',
   'categories.delete.confirm': 'Excluir esta categoria?',
   'categories.form.name': 'Nome',
+  'categories.form.name.required': 'Nome é obrigatório',
   'categories.form.description': 'Descrição',
   'categories.table.name': 'Nome',
   'categories.table.description': 'Descrição',
   'categories.table.actions': 'Ações',
+  'categories.empty': 'Nenhuma categoria encontrada',
 
   'products.title': 'Produtos',
   'products.new': 'Novo Produto',
@@ -22,9 +26,12 @@ const messages = {
   'products.deleted': 'Produto excluído',
   'products.delete.confirm': 'Excluir este produto?',
   'products.form.name': 'Nome',
+  'products.form.name.required': 'Nome é obrigatório',
   'products.form.description': 'Descrição',
   'products.form.price': 'Preço',
+  'products.form.price.required': 'Preço é obrigatório',
   'products.form.category': 'Categoria',
+  'products.form.category.required': 'Categoria é obrigatória',
   'products.form.active': 'Ativo',
   'products.table.name': 'Nome',
   'products.table.category': 'Categoria',
@@ -33,6 +40,7 @@ const messages = {
   'products.table.actions': 'Ações',
   'products.active.yes': 'Sim',
   'products.active.no': 'Não',
+  'products.empty': 'Produtos não encontrado, adicione um novo',
 } as const;
 
 export default messages;
