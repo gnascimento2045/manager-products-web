@@ -1,5 +1,6 @@
 import api from './api';
 import type { Category } from './categories.service';
+export type { Category } from './categories.service';
 
 export interface Product {
   id: string;
