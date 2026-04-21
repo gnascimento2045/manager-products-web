@@ -1,0 +1,38 @@
+const messages = {
+  'nav.products': 'Produtos',
+  'nav.categories': 'Categorias',
+  'app.title': 'Gerenciador',
+
+  'categories.title': 'Categorias',
+  'categories.new': 'Nova Categoria',
+  'categories.deleted': 'Categoria excluída',
+  'categories.created': 'Categoria criada',
+  'categories.delete.confirm': 'Excluir esta categoria?',
+  'categories.form.name': 'Nome',
+  'categories.form.description': 'Descrição',
+  'categories.table.name': 'Nome',
+  'categories.table.description': 'Descrição',
+  'categories.table.actions': 'Ações',
+
+  'products.title': 'Produtos',
+  'products.new': 'Novo Produto',
+  'products.edit': 'Editar Produto',
+  'products.created': 'Produto criado',
+  'products.updated': 'Produto atualizado',
+  'products.deleted': 'Produto excluído',
+  'products.delete.confirm': 'Excluir este produto?',
+  'products.form.name': 'Nome',
+  'products.form.description': 'Descrição',
+  'products.form.price': 'Preço',
+  'products.form.category': 'Categoria',
+  'products.form.active': 'Ativo',
+  'products.table.name': 'Nome',
+  'products.table.category': 'Categoria',
+  'products.table.price': 'Preço',
+  'products.table.active': 'Ativo',
+  'products.table.actions': 'Ações',
+  'products.active.yes': 'Sim',
+  'products.active.no': 'Não',
+} as const;
+
+export default messages;
